@@ -27,9 +27,12 @@ services:
       - '3000:3000'
     environment:
       - DATABASE_HOST=db
+      - BUNDLE_PATH=/bundle/vendor
     volumes:
       - .:/app
+      - bundle_path:/bundle
 
 volumes:
   redis:
   postgres:
+  bundle_path:
