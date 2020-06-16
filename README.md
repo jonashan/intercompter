@@ -9,4 +9,7 @@
 - run ```docker-compose up```
 - Navigate to ```localhost:3000```
 
+### Mailing - Mailcatcher
+To catch and view emails in development navigate to ```http://localhost:1080```
+
 Success!!
