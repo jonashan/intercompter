@@ -1,3 +1,4 @@
+[![Codeship Status for jonashan/intercompter](https://app.codeship.com/projects/b29a62e0-9246-0138-90a6-62d350f20af9/status?branch=master)](https://app.codeship.com/projects/400168)
 # Intercompoter
 
 ## How to setup
