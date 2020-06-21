@@ -2,8 +2,8 @@ require "application_system_test_case"
 
 class HomesTest < ApplicationSystemTestCase
   test "visiting the index" do
-    visit homes_url
+    visit root_path
   
-    assert_selector "h1", text: "Home"
+    assert_text "Home"
   end
 end

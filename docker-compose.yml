@@ -21,6 +21,7 @@ services:
   web:
     depends_on:
       - 'db'
+      - 'webdriver_chrome'
     build: .
     command: foreman start -f Procfile.dev -p 3000
     ports:
@@ -29,6 +30,7 @@ services:
     environment:
       - DATABASE_HOST=db
       - BUNDLE_PATH=/bundle/vendor
+      - SELENIUM_REMOTE_URL=http://webdriver_chrome:4444/wd/hub
     volumes:
       - .:/app
       - type: tmpfs
@@ -40,6 +42,12 @@ services:
     ports:
       - "1080:1080"
       - "1025:1025"
+
+  webdriver_chrome:
+    image: selenium/standalone-chrome-debug
+    ports:
+      - 4444:4444
+      - 5900:5900
 
 volumes:
   redis:
