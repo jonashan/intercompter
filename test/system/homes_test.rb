@@ -2,8 +2,8 @@ require "application_system_test_case"
 
 class HomesTest < ApplicationSystemTestCase
   test "visiting the index" do
-    visit root_path
+    visit '/'
   
-    assert_text "Home"
+    assert_text "Sign in"
   end
 end

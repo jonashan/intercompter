@@ -3,12 +3,6 @@ require_relative '../config/environment'
 require 'rails/test_help'
 require 'minitest/reporters'
 
-# Use `fetch` to fail loudly if these variables aren't set. We might relax this 
-# and set defaults at some point, but for the moment we want to make sure we didn't 
-# miss a step.
-Capybara.server_host = ENV.fetch("CAPYBARA_SERVER_HOST")
-Capybara.server_port = ENV.fetch("CAPYBARA_SERVER_PORT")
-
 Minitest::Reporters.use!(
   Minitest::Reporters::ProgressReporter.new(color: true),
     ENV,
