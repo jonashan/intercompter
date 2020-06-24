@@ -1,4 +1,4 @@
-version: '3'
+version: '3.2'
 
 services:
   db:
@@ -18,18 +18,24 @@ services:
     volumes:
       - 'redis:/data'
 
-  web:
+  app:
     depends_on:
       - 'db'
+      - chrome
     build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: foreman start -f Procfile.dev -p 3000
     ports:
-      - '3000:3000'
+      - "3000:3000"
+      - "35729:35729"
+      - "3434:3434"
     environment:
       - DATABASE_HOST=db
       - BUNDLE_PATH=/bundle/vendor
+      - HUB_URL=http://chrome:4444/wd/hub
     volumes:
       - .:/app
+      - type: tmpfs
+        target: /app/tmp/pids/
       - bundle_path:/bundle
 
   mailcatcher:
@@ -37,6 +43,13 @@ services:
     ports:
       - "1080:1080"
       - "1025:1025"
+
+  chrome:
+    image: selenium/standalone-chrome-debug
+    volumes:
+      - /dev/shm:/dev/shm
+    ports:
+      - "4444:4444"
 
 volumes:
   redis:
