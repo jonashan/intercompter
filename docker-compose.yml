@@ -27,7 +27,7 @@ services:
     ports:
       - "3000:3000"
       - "35729:35729"
-      - "${CAPYBARA_SERVER_PORT:-3434}:${CAPYBARA_SERVER_PORT:-3434}"
+      - "3434:3434"
     environment:
       - DATABASE_HOST=db
       - BUNDLE_PATH=/bundle/vendor
@@ -45,9 +45,11 @@ services:
       - "1025:1025"
 
   chrome:
-    image: selenium/standalone-chrome:3.141.59-zirconium # this version should match that of the selenium-webdriver gem (see Gemfile)
+    image: selenium/standalone-chrome-debug
     volumes:
       - /dev/shm:/dev/shm
+    ports:
+      - "4444:4444"
 
 volumes:
   redis:
